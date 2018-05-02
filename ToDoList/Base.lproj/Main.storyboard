@@ -19,13 +19,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="bwa-E3-NsQ" customClass="ToDoCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="bwa-E3-NsQ" customClass="ToDoCell" customModule="ToDoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bwa-E3-NsQ" id="Bhs-ZD-YTs">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-0a-CnT" userLabel="Is Complete Button">
+                                            <rect key="frame" x="8" y="4" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="36" id="Lku-Lg-lLO"/>
+                                                <constraint firstAttribute="height" constant="36" id="riF-MR-1wQ"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="Unchecked"/>
+                                            <state key="selected" image="Checked"/>
+                                            <connections>
+                                                <action selector="isCompleteButtonTapped" destination="bwa-E3-NsQ" eventType="touchUpInside" id="jvI-Zs-kkN"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9en-pG-mS2">
+                                            <rect key="frame" x="52" y="11" width="299" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="9en-pG-mS2" firstAttribute="centerY" secondItem="Bhs-ZD-YTs" secondAttribute="centerY" id="03Z-wd-z96"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="9en-pG-mS2" secondAttribute="trailing" constant="8" id="HPM-2X-17f"/>
+                                        <constraint firstItem="ELY-0a-CnT" firstAttribute="centerY" secondItem="Bhs-ZD-YTs" secondAttribute="centerY" id="jzd-AX-D36"/>
+                                        <constraint firstItem="9en-pG-mS2" firstAttribute="leading" secondItem="ELY-0a-CnT" secondAttribute="trailing" constant="8" id="kFp-Hz-PbA"/>
+                                        <constraint firstItem="ELY-0a-CnT" firstAttribute="leading" secondItem="Bhs-ZD-YTs" secondAttribute="leading" constant="8" id="qYc-Wq-cOI"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="isCompleteButton" destination="ELY-0a-CnT" id="bEj-B0-6tc"/>
+                                    <outlet property="titleTable" destination="9en-pG-mS2" id="Jfn-qo-TOy"/>
+                                    <segue destination="by4-fi-VDw" kind="show" identifier="showDetails" id="Hyp-xB-Ddr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -91,7 +123,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="owL-Fa-pOd" secondAttribute="trailing" constant="8" id="8wL-KM-jZ1"/>
                                                 <constraint firstItem="NUa-Ed-rYE" firstAttribute="centerY" secondItem="yy8-7j-Gxs" secondAttribute="centerY" id="P8h-Jv-zyG"/>
                                                 <constraint firstItem="owL-Fa-pOd" firstAttribute="centerY" secondItem="yy8-7j-Gxs" secondAttribute="centerY" id="THu-38-JfH"/>
-                                                <constraint firstItem="owL-Fa-pOd" firstAttribute="leading" secondItem="NUa-Ed-rYE" secondAttribute="trailing" id="d90-9Z-K2V"/>
+                                                <constraint firstItem="owL-Fa-pOd" firstAttribute="leading" secondItem="NUa-Ed-rYE" secondAttribute="trailing" constant="8" id="d90-9Z-K2V"/>
                                                 <constraint firstItem="owL-Fa-pOd" firstAttribute="leading" secondItem="NUa-Ed-rYE" secondAttribute="trailing" constant="8" id="eWL-R3-OC1"/>
                                                 <constraint firstItem="NUa-Ed-rYE" firstAttribute="leading" secondItem="yy8-7j-Gxs" secondAttribute="leading" id="xOT-bh-JeH"/>
                                             </constraints>
@@ -218,7 +250,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbf-5g-OTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1945" y="812"/>
+            <point key="canvasLocation" x="1988" y="1313"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JdL-qM-NEU">
@@ -241,4 +273,7 @@
         <image name="Checked" width="44" height="44"/>
         <image name="Unchecked" width="44" height="44"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hyp-xB-Ddr"/>
+    </inferredMetricsTieBreakers>
 </document>

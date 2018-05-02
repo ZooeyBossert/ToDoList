@@ -45,6 +45,7 @@ class ToDoViewController: UITableViewController {
         isCompleteButton.isSelected = !isCompleteButton.isSelected
     }
     
+    // Showing datepicker when clicked on
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         updateDueDateLabel(date: dueDatePickerView.date)
     }
@@ -96,7 +97,16 @@ class ToDoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dueDatePickerView.date = Date().addingTimeInterval(24*60*60)
+        if let todo = todo {
+            navigationItem.title = "To-Do"
+            titleTextField.text = todo.title
+            isCompleteButton.isSelected = todo.isComplete
+            dueDatePickerView.date = todo.dueDate
+            notesTextView.text = todo.notes
+        } else {
+        dueDatePickerView.date =
+        Date().addingTimeInterval(24*60*60)
+        }
         updateDueDateLabel(date: dueDatePickerView.date)
         updateSaveButtonState()
     }
